@@ -1,0 +1,1077 @@
+{
+	"info": {
+		"_postman_id": "8fe33635-58dd-45cc-bd8d-6ee940da6d1f",
+		"name": "TNR-LCL-MSEPI05 INT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39366411"
+	},
+	"item": [
+		{
+			"name": "POST /proxies_indicators",
+			"item": [
+				{
+					"name": "🛑 KO Contrôles données entrantes",
+					"item": [
+						{
+							"name": "KO🛑/REQ0000/Requete vide",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0000\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Requete vide en entrée\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									},
+									{
+										"key": "numtecprs",
+										"value": "4000000774",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi05}}/proxies_indicators",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi05}}"
+									],
+									"path": [
+										"proxies_indicators"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0001/numtecprs absent",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									},
+									{
+										"key": "numtecprs",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"proxies\": [\r\n    {\"proxy_hash\":\"HLn6nYjJPnGN-qPHwtg3yqbfnGbGXDe8cegEC3ivYLI=\"}\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi05}}/proxies_indicators",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi05}}"
+									],
+									"path": [
+										"proxies_indicators"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0001/numtecprs invalide",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									},
+									{
+										"key": "numtecprs",
+										"value": "1234567891011",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"proxies\": [\r\n    {\"proxy_hash\":\"HLn6nYjJPnGN-qPHwtg3yqbfnGbGXDe8cegEC3ivYLI=\"}\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi05}}/proxies_indicators",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi05}}"
+									],
+									"path": [
+										"proxies_indicators"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0001/numtecprs vide",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									},
+									{
+										"key": "numtecprs",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"proxies\": [\r\n    {\"proxy_hash\":\"HLn6nYjJPnGN-qPHwtg3yqbfnGbGXDe8cegEC3ivYLI=\"}\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi05}}/proxies_indicators",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi05}}"
+									],
+									"path": [
+										"proxies_indicators"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0030/proxy_hash absent",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0030\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'proxy_hash' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									},
+									{
+										"key": "numtecprs",
+										"value": "4000000774",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"proxies\": [\r\n    {}\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi05}}/proxies_indicators",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi05}}"
+									],
+									"path": [
+										"proxies_indicators"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0030/proxy_hash vide",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0030\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'proxy_hash' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									},
+									{
+										"key": "numtecprs",
+										"value": "4000000774",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"proxies\": [\r\n{\"proxy_hash\":\"\"}\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi05}}/proxies_indicators",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi05}}"
+									],
+									"path": [
+										"proxies_indicators"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/EXT0048/proxy_hash Invalide",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 500\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(500);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"EXT0048\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Proxy indicators - Mauvaise requête ou paramètres manquants \");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									},
+									{
+										"key": "numtecprs",
+										"value": "4000000774",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"proxies\": [\r\n{\"proxy_hash\":\"HLn6nYjJPnGN-qPHwtg3yqbfnGbGXDe8cegEC3ivYLI=XXXX\"}\r\n ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi05}}/proxies_indicators",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi05}}"
+									],
+									"path": [
+										"proxies_indicators"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "🛑 KO Contrôles fonctionnels Copy",
+					"item": [
+						{
+							"name": "KO🛑/FCT0000/client numtecprs \"0\" non enrole",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 404\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(404);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"FCT0000\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Le client n’est pas enrôlé dans EPI ou a été supprimé.\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									},
+									{
+										"key": "numtecprs",
+										"value": "0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"proxies\": [\r\n    {\"proxy_hash\":\"HLn6nYjJPnGN-qPHwtg3yqbfnGbGXDe8cegEC3ivYLI=\"}\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi05}}/proxies_indicators",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi05}}"
+									],
+									"path": [
+										"proxies_indicators"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "OK✅/2 proxies existants sur 4 en entrée",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Le code réponse HTTP est 200\", function () {\r",
+									"  pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La réponse contient les champs indicators et truncated\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData).to.have.property('indicators');\r",
+									"  pm.expect(responseData).to.have.property('truncated');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Les champs proxy_hash, can_be_payer et pro existent dans chaque objet indicators\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    const indicators = responseData.indicators;\r",
+									"\r",
+									"    indicators.forEach(indicator => {\r",
+									"        pm.expect(indicator).to.have.property('proxy_hash')\r",
+									"        pm.expect(indicator).to.have.property('can_be_payer');\r",
+									"        pm.expect(indicator).to.have.property('pro');\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Les champs proxy_hash contiennent des valeurs sur 44 caractères\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    const indicators = responseData.indicators;\r",
+									"\r",
+									"    indicators.forEach(indicator => {\r",
+									"        pm.expect(indicator.proxy_hash.length).to.be.equal(44, 'proxy_hash différent de 44 caractères de longueur')\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Le champ can_be_payer est bien un booléen\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  const indicators = responseData.indicators;\r",
+									"\r",
+									"  indicators.forEach(function(item) {\r",
+									"    if (item.can_be_payer !== undefined) {\r",
+									"      pm.expect(item.can_be_payer).to.be.a('boolean');\r",
+									"    }\r",
+									"  });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Le champ pro est bien un booléen\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  const indicators = responseData.indicators;\r",
+									"\r",
+									"  indicators.forEach(function(item) {\r",
+									"    if (item.pro !== undefined) {\r",
+									"      pm.expect(item.pro).to.be.a('boolean');\r",
+									"    }\r",
+									"  });\r",
+									"});\r",
+									"\r",
+									"pm.test(\"2 résultats sont renvoyés parmi les 4 envoyés à l'origine\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    const indicators = responseData.indicators;\r",
+									"\r",
+									"    pm.expect(indicators.length).to.be.equal(2, \"Le nombre de résultat renvoyé n'est pas cohérent avec le JDD\");\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password_msepi}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user_msepi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Context-Acquisition-Channel",
+								"value": "MO",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Context-User-Profile-Code",
+								"value": "L",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "CorrelationId",
+								"value": "{{$guid}}",
+								"type": "text"
+							},
+							{
+								"key": "numtecprs",
+								"value": "4000000774",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"proxies\": [\r\n{\"proxy_hash\":\"QWeQr0O0rw0KYG4Mi4Rs5Uu-OyU-jnQj_2DY-H0pYN4=\"},\r\n{\"proxy_hash\":\"aF0WKbmtBMWzmFIcNhj8a9SUxmr-Tob76QN1t7cRF-8=\"},\r\n{\"proxy_hash\":\"3wSTPxvaZ3hLVV1PgPQUjgiqo_c2Xx3YKU5bL9D8vzM=\"},\r\n{\"proxy_hash\":\"8vLz4EN74X5rTjWeu8TLvOV7YD-epDfwvUYGhxfjuSU=\"}\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_msepi}}{{context_root_msepi05}}/proxies_indicators",
+							"host": [
+								"{{base_url_msepi}}{{context_root_msepi05}}"
+							],
+							"path": [
+								"proxies_indicators"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OK✅/Aucun proxy existants sur  2 en entrée",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Le code réponse HTTP est 200\", function () {\r",
+									"  pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La réponse contient les champs indicators et truncated\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData).to.have.property('indicators');\r",
+									"  pm.expect(responseData).to.have.property('truncated');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Le champ indicators est un tableau vide (aucun des proxy hash n'existent sur EPI)\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  const indicators = responseData.indicators;\r",
+									"\r",
+									"  pm.expect(indicators).to.be.an('array');\r",
+									"  pm.expect(indicators).to.be.empty;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password_msepi}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user_msepi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Context-Acquisition-Channel",
+								"value": "MO",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Context-User-Profile-Code",
+								"value": "L",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "CorrelationId",
+								"value": "{{$guid}}",
+								"type": "text"
+							},
+							{
+								"key": "numtecprs",
+								"value": "4000000774",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"proxies\": [\r\n{\"proxy_hash\":\"QWeQr0O0rw0KYG4Mi4Rs5Uu-OyU-jnQj_2DY-H0pYN4=\"},\r\n{\"proxy_hash\":\"aF0WKbmtBMWzmFIcNhj8a9SUxmr-Tob76QN1t7cRF-8=\"}\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_msepi}}{{context_root_msepi05}}/proxies_indicators",
+							"host": [
+								"{{base_url_msepi}}{{context_root_msepi05}}"
+							],
+							"path": [
+								"proxies_indicators"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
