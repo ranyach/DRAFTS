@@ -1,0 +1,748 @@
+[ {
+  "testName" : "rule1-9 - Batiment non éligible",
+  "payload" : {
+  "eligibileDPE": false,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": false,
+    "dateConstructionDpe": null,
+    "etiquetteDpe": null,
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": false,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+     "xtra248": "99",
+    "xtra249": "Y",
+    "xtra250": "",
+    "xtra251": "02",
+    "xtra275": "",
+    "regleAppliquee": "RG1"
+  }
+}, {
+  "testName" : "rule default- Autre bien immo",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": "2010-02-02",
+    "etiquetteDpe": null,
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": true,
+    "normeThermique": "01",
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "07",
+    "xtra251": "02",
+    "xtra275": "",
+    "regleAppliquee": "eligible-default"
+  }
+}, {
+  "testName" : "rule37- Autre bien immo",
+  "payload" : {
+     "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": false,
+    "dateConstructionDpe": "",
+    "etiquetteDpe": null,
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "07",
+    "xtra251": "02",
+    "xtra275": "",
+    "regleAppliquee": "RG37"
+  }
+}, {
+  "testName" : "rule36 - Autre bien immo",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": false,
+    "dateConstructionDpe": "",
+    "etiquetteDpe": null,
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": true,
+    "normeThermique": "02",
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG36"
+  }
+}, {
+  "testName" : "rule10 - Autre bien immo",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": "2010-03-02",
+    "dateDepotPcPresent": true,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": null,
+    "etiquetteDpe": "A",
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG10"
+  }
+}, {
+  "testName" : "rule11 - Autre bien immo",
+  "payload" : {
+   "eligibileDPE": true,
+    "dateDepotPc": "2010-03-02",
+    "dateDepotPcPresent": true,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": null,
+    "etiquetteDpe": "C",
+    "valeurCep": 50.0,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+   
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG11"
+  }
+}, {
+  "testName" : "rule12 - Autre bien immo",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": "2010-03-02",
+    "dateDepotPcPresent": true,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": null,
+    "etiquetteDpe": "C",
+    "valeurCep": 500.0,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+   "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "N",
+    "regleAppliquee": "RG12"
+  }
+}, {
+  "testName" : "rule13 - Autre bien immo",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": "2014-03-02",
+    "dateDepotPcPresent": true,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": null,
+    "etiquetteDpe": "A",
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG13"
+  }
+}, {
+  "testName" : "rule14 - Autre bien immo",
+  "payload" : {
+  "eligibileDPE": true,
+    "dateDepotPc": "2014-03-02",
+    "dateDepotPcPresent": true,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": null,
+    "etiquetteDpe": "C",
+    "valeurCep": 50.0,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG14"
+  }
+}, {
+  "testName" : "rule15 - Autre bien immo",
+  "payload" : {
+    "eligibileDPE" : true,
+    "dateConstructionDpe" : null,
+    "valeurCep" : 500.0,
+    "normeThermique" : null,
+    "etiquetteDpe" : "C",
+    "presenceDpeJustificatif" : true,
+    "normeThermiqueEstimee" : null,
+    "dateDepotPc" : "2014-03-02",
+    "dateDepotPcPresent" : true,
+    "codeBatiment" : "00001",
+    "presenceNormeThermiqueJustificatif" : null
+  },
+  "expected" : {
+    "xtra251" : "02",
+    "xtra250" : "06",
+    "xtra275" : "N",
+    "xtra248" : "02",
+    "regleAppliquee" : "RG15",
+    "xtra249" : "Y"
+  }
+}, {
+  "testName" : "rule35-cas-DPE-false",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": "2014-03-02",
+    "dateDepotPcPresent": true,
+    "presenceDpeJustificatif": false,
+    "dateConstructionDpe": null,
+    "etiquetteDpe": null,
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": true,
+    "normeThermique": "01",
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "V2-RG35"
+  }
+},
+ {
+  "testName" : "rule35-cas-DPE-true",
+  "payload" : {
+  "eligibileDPE": true,
+    "dateDepotPc": "2014-03-02",
+    "dateDepotPcPresent": true,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": null,
+    "etiquetteDpe": null,
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": true,
+    "normeThermique": "01",
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+  "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "V2-RG35"
+  }
+},
+
+
+
+{
+  "testName" : "rule16 - Autre bien immo",
+  "payload" : {
+"eligibileDPE": true,
+    "dateDepotPc": "2021-01-01",
+    "dateDepotPcPresent": true,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": null,
+    "etiquetteDpe": null,
+    "valeurCep": 30.0,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+     "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG16"
+  }
+}, {
+  "testName" : "rule17 - Autre bien immo",
+  "payload" : {
+ "eligibileDPE": true,
+    "dateDepotPc": "2021-12-31",
+    "dateDepotPcPresent": true,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": null,
+    "etiquetteDpe": null,
+    "valeurCep": 500.0,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+     "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "N",
+    "regleAppliquee": "RG17"
+  }
+}, {
+  "testName" : "rule18-cas-DPE-false",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": "2023-02-02",
+    "dateDepotPcPresent": true,
+    "presenceDpeJustificatif": false,
+    "dateConstructionDpe": null,
+    "etiquetteDpe": null,
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+       "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG18"
+  }
+},
+{
+  "testName" : "rule18-cas-DPE-true",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": "2023-02-02",
+    "dateDepotPcPresent": true,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": null,
+    "etiquetteDpe": null,
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+     "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG18"
+  }
+},
+{
+  "testName" : "rule19 - Autre bien immo",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "dateConstructionDpe": "2010-02-02",
+    "presenceDpeJustificatif": true,
+    "etiquetteDpe": "A",
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+     "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG19"
+  }
+}, {
+  "testName" : "rule20 - Autre bien immo",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "dateConstructionDpe": "2010-02-02",
+    "presenceDpeJustificatif": true,
+    "valeurCep": 50.0,
+    "etiquetteDpe": "C",
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG20"
+  }
+}, {
+  "testName" : "rule21 - Autre bien immo",
+  "payload" : {
+  "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "dateConstructionDpe": "2010-02-02",
+    "presenceDpeJustificatif": true,
+    "valeurCep": 540.0,
+    "etiquetteDpe": "C",
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+     "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "N",
+    "regleAppliquee": "RG21"
+  }
+}, {
+  "testName" : "rule24 - Autre bien immo",
+  "payload" : {
+   "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": "2013-02-02",
+    "etiquetteDpe": "A",
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+     "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG24"
+  }
+}, {
+  "testName" : "rule25 - Autre bien immo",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": "2013-02-02",
+    "valeurCep": 50.0,
+    "etiquetteDpe": "C",
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+   
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG25"
+  }
+}, {
+  "testName" : "rule26 - Autre bien immo",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": "2013-02-02",
+    "valeurCep": 190.0,
+    "etiquetteDpe": "C",
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "N",
+    "regleAppliquee": "RG26"
+  }
+}, {
+  "testName" : "rule27 - Autre bien immo",
+  "payload" : {
+   "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": "2015-02-02",
+    "etiquetteDpe": null,
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": true,
+    "normeThermique": "01",
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+  "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG27"
+  }
+}, {
+  "testName" : "rule28 - Autre bien immo",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": "2015-02-02",
+    "etiquetteDpe": null,
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": false,
+    "normeThermique": "01",
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+   "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "07",
+    "xtra251": "02",
+    "xtra275": "",
+    "regleAppliquee": "RG28"
+  }
+}, {
+  "testName" : "rule29 - Autre bien immo",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": "2021-02-02",
+    "etiquetteDpe": null,
+    "valeurCep": 30.0,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+   
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG29"
+  }
+}, {
+  "testName" : "rule30 - Autre bien immo",
+  "payload" : {
+      "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": "2021-02-02",
+    "etiquetteDpe": null,
+    "valeurCep": 500.0,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "N",
+    "regleAppliquee": "RG30"
+  }
+}, {
+  "testName" : "rule33 - Autre bien immo",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": "2023-02-02",
+    "etiquetteDpe": null,
+    "valeurCep": 30.0,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+   "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG33"
+  }
+}, {
+  "testName" : "rule34 - Autre bien immo",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": "2023-02-02",
+    "etiquetteDpe": null,
+    "valeurCep": 300.0,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00006"
+  },
+  "expected" : {
+ 
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "N",
+    "regleAppliquee": "RG34"
+  }
+}, {
+  "testName" : "rule31 - Autre bien immo",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": "2023-02-02",
+    "etiquetteDpe": null,
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": true,
+    "normeThermique": "02",
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+     "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG31"
+  }
+}, {
+  "testName" : "rule32 - Autre bien immo",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": true,
+    "dateConstructionDpe": "2023-02-02",
+    "etiquetteDpe": null,
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": false,
+    "normeThermique": "02",
+    "normeThermiqueEstimee": null,
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+  "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "07",
+    "xtra251": "02",
+    "xtra275": "",
+    "regleAppliquee": "RG32"
+  }
+}, {
+  "testName" : "rule38 - norme thermique estimee",
+  "payload" : {
+     "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": false,
+    "dateConstructionDpe": null,
+    "etiquetteDpe": null,
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": null,
+    "normeThermique": null,
+    "normeThermiqueEstimee": "01",
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG38"
+  }
+}, {
+  "testName" : "rule39 - norme thermique estimee",
+  "payload" : {
+    "eligibileDPE": true,
+    "dateDepotPc": null,
+    "dateDepotPcPresent": false,
+    "presenceDpeJustificatif": false,
+    "dateConstructionDpe": null,
+    "etiquetteDpe": null,
+    "valeurCep": null,
+    "presenceNormeThermiqueJustificatif": false,
+    "normeThermique": null,
+    "normeThermiqueEstimee": "01",
+    "codeBatiment": "00001"
+  },
+  "expected" : {
+    "xtra248": "02",
+    "xtra249": "Y",
+    "xtra250": "06",
+    "xtra251": "02",
+    "xtra275": "Y",
+    "regleAppliquee": "RG39"
+  }
+} ]
