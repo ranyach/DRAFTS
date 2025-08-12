@@ -1,0 +1,33 @@
+Bonjour [Prénom Manager 1] et [Prénom Manager 2],
+
+Suite à mon arrivée le 4 septembre sur le projet PAY / WERO – Paiement instantané, voici un premier point d’avancement sur ma prise en main du contexte et des sujets en cours.
+
+1. Contexte projet et architecture
+Le projet repose sur une architecture composée de plusieurs microservices (5 à 6 principaux), chacun regroupant plusieurs services internes.
+Les traitements s’appuient sur le back-end CAPS, qui héberge notamment la base de données et gère une partie des règles métier. Côté LCL, l’application WERO orchestre les parcours de paiement P2P (Person to Person) via ces microservices, en lien avec CAPS et d’autres services externes (Paylib, STET…).
+
+2. Besoin identifié : mocking des services CAPS
+Une demande importante exprimée par le Tech Lead et les BA est de pouvoir moquer les appels CAPS afin de :
+	•	Simuler des réponses sur des cas complexes (timeouts, erreurs internes, codes spécifiques…)
+	•	Pouvoir enrichir les tests Postman sans dépendre systématiquement de jeux de données valides côté CAPS
+
+Une démonstration de l’outil Mockoon a eu lieu, et je vais étudier sa faisabilité et son intégration pour répondre à ce besoin.
+
+3. Jeux de données
+Actuellement, les tests nécessitent des jeux de données valides CAPS pour obtenir des réponses exploitables, ce qui limite la souplesse des campagnes. L’objectif est de mettre en place des données maîtrisées côté mock, pour sécuriser et élargir la couverture de tests.
+
+4. Tests automatisés et optimisation
+Les BA ont utilisé Portman pour générer certains tests Postman à partir de Swagger, notamment sur le service MSEPI05 (recherche de proxy).
+Mon rôle est double :
+	•	Automatiser les autres tests non couverts par Portman
+	•	Optimiser / refactoriser les collections existantes (par ex. TNR MSEPI05), afin de mutualiser les cas, variabiliser les données et appliquer de bonnes pratiques d’automatisation
+
+Je vais également analyser l’intérêt d’utiliser Portman comme appui pour de futurs développements, tout en améliorant le code et la structure des tests déjà en place.
+
+5. Phase actuelle
+Je suis encore en phase d’onboarding et d’exploration :
+	•	Appropriation du contexte fonctionnel et technique
+	•	Étude d’outils (Mockoon, Portman…)
+	•	Analyse des collections Postman actuelles et premiers chantiers de refacto sur MSEPI05
+
+La période est encore marquée par des absences dans l’équipe, ce qui est normal à cette période, mais j’avance sur la compréhension et la préparation des prochains travaux.
