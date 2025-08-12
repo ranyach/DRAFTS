@@ -1,0 +1,36 @@
+Objet : E2 – Fin d’immersion sur la squad OFD : état des lieux & remise des livrables
+
+Bonjour,
+
+Petit point d’état des lieux pour clore l’immersion sur la squad OFD et vous proposer la suite.
+
+Où on en est
+	•	MSFOD : les 11 services priorisés ont été automatisés. Exécution OK en local (Postman / Newman en ligne de commande) avec génération de rapports HTML.
+	•	OFD Rules (acquisition) :
+	•	Refacto de la collection réalisé en bonus (hors périmètre du Lot 1) pour la rendre plus propre et exploitable.
+	•	Suite au point du 29 juillet, il m’a été demandé de variabiliser le numéro de version et d’ajouter le test associé. C’est livré au 12 août.
+
+Par ailleurs, côté OFD, un besoin potentiel “OFD Rules – rénovation” a été évoqué. De mon côté, c’est noté, mais pas encore validé avec ma squad d’attachement.
+
+Contenu du pack de tests
+
+Le livrable est structuré en 4 dossiers :
+	1.	collections
+	2.	environments
+	3.	data (jeux de données)
+	4.	newman-reports (rapports HTML)
+
+Suite
+	•	Je considère le Lot 1 clôturé, et j’ai basculé sur une nouvelle immersion.
+	•	Si besoin, je peux refaire une courte démo pour l’équipe.
+
+Remise des livrables
+
+Pouvez-vous valider le mode de remise à privilégier après échange avec Cyril et Jennifer (ex. dépôt Git / MR, archive .zip avec README, export/partage Postman, autre) et me revenir avec la modalité retenue et l’emplacement ?
+Dès votre confirmation, je prépare et dépose le pack au bon endroit.
+
+Merci d’avance pour votre retour.
+
+Bonne journée,
+Rania
+Automaticienne – Équipe E2
