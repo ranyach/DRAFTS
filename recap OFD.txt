@@ -1,0 +1,23 @@
+Petit récap rapide de notre point, juste pour garder une trace claire des échanges et des actions à venir. sans que rien ne se perde 😊 :
+ 
+@Rania : Ajouter dans les tests la prise en charge de la version OFD Rules (acquisition), permettant de paramétrer dynamiquement le numéro de version, et de l’identifier / le mettre à jour si besoin à l’exécution
+ 
+SLAMA Cyril (LCL) : reviendra vers moi dès que l’équipe aura de la capa pour commencer l'intégration.
+ 
+----------------------------------------
+Sujets abordés :
+----------------------------------------
+Intégration CI/CD :
+- A ce stade, l’intégration CI/CD de MSFOD n’est pas priorisée.
+- C’est plutôt OFD Rules (acquisition) qui pourrait faire l’objet d’une intégration dans un premier temps (sur environnement DEV).
+Purge des data créées via les tests (car pas de refresh d’environnement de test entre campagnes) :
+
+- Proposition 1 : Ajouter des requêtes de suppression après chaque création -> Pas faisable pour le moment (pas de web service de delete exposé + manque de bande passante coté dev).
+- Proposition 2 : Ajouter des champs techniques dans les documents en BDD pour identifier les JDD de test -> à voir c’est envisageable coté dev à moyen terme...
+ 
+----------------------------------------
+A suivre / à confirmer 
+----------------------------------------
+Un besoin potentiel à venir sur OFD Rules, rénovation cette fois-ci -> pas encore validé avec par ma squad d’attachement.
+
+N’hésitez pas à compléter si j’ai oublié quelque chose, Merci! 
