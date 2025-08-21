@@ -1,0 +1,10 @@
+J’ai d’abord finalisé le travail avec l’équipe OFD et partagé les éléments à Essyn. Ensuite, je me suis recentrée sur le contexte de l’équipe P.
+
+Dans ce cadre :
+	•	Je me suis plongée dans la documentation de l’équipe P ainsi que dans celle de CAPS, afin de mieux comprendre leur fonctionnement et l’intégration avec la base de données.
+	•	J’ai commencé à travailler sur l’optimisation de la collection Postman d’un microservice réalisée initialement par un BA. L’objectif est de la rendre plus robuste et adaptée aux différents environnements (dev, UAT, intégration).
+	•	Je me suis également penchée sur la mise en place d’un mock des appels CAPS, puisque l’équipe P n’a pas d’accès direct à la base. J’ai exploré l’outil Mountebank (Mukun) pour préparer cette solution de mock, afin d’apporter plus de flexibilité et de souplesse à l’automatisation des tests.
+
+Pour la suite, je prévois, à mon retour de congés, de faire un point plus détaillé avec Thomas (Tech Lead) pour valider mes premières bases et ajuster la direction.
+
+Globalement, pas de blocage majeur à ce stade
