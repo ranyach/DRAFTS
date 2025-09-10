@@ -1,0 +1,18 @@
+{{!-- 1) Construire la réponse --}}
+{{setVar "resp" (object
+  "id" (uuid)
+  "created_at" (now)
+  "updated_at" (now)
+  "status" (object "value" "Initial" "display_value" "PaymentInitial")
+)}}
+
+{{!-- 2) Mémoriser si une Idempotency-Key est présente --}}
+{{#if (header 'Idempotency-Key')}}
+  {{setData 'idem' (concat 'keys.' (header 'Idempotency-Key') '.exists') true}}
+  {{setData 'idem' (concat 'keys.' (header 'Idempotency-Key') '.status') 201}}
+  {{setData 'idem' (concat 'keys.' (header 'Idempotency-Key') '.payload') (body '$')}}
+  {{setData 'idem' (concat 'keys.' (header 'Idempotency-Key') '.response') (getVar 'resp')}}
+{{/if}}
+
+{{!-- 3) Renvoyer --}}
+{{{json (getVar "resp")}}}
