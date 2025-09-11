@@ -1,0 +1,24 @@
+// ====== COMMON PRE-REQUEST (folder level) ======
+/** Enlève les setTimeout inutiles : tests plus rapides et déterministes **/
+
+// CorrelationId : UUID auto si absent
+const hasCorr = pm.request.headers.has('CorrelationId');
+if (!hasCorr) {
+  pm.request.headers.add({ key: 'CorrelationId', value: pm.variables.replaceIn('{{$guid}}') });
+}
+
+// numtecprs : priorité data file > env var
+let numtecprs = pm.iterationData.get('numtecprs') ?? pm.environment.get('numtecprs');
+if (!numtecprs || String(numtecprs).trim() === '') {
+  // Sécurise : refuse d'envoyer sans numtecprs (meilleures erreurs côté tests)
+  pm.variables.set('sendWithoutNumtecprs', true);
+} else {
+  pm.request.headers.upsert({ key: 'numtecprs', value: String(numtecprs) });
+  pm.variables.set('sendWithoutNumtecprs', false);
+}
+
+// Body : si le test fournit "proxies" via data file, on le prend
+const proxies = pm.iterationData.get('proxies');
+if (proxies) {
+  pm.request.body.update(JSON.stringify({ proxies }, null, 2));
+}
