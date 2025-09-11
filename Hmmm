@@ -1,0 +1,21 @@
+// 1) Injecter le body depuis le dataset (s'il existe)
+const bodyFromData = pm.iterationData.get('body');
+if (bodyFromData) {
+  pm.request.body.update(JSON.stringify(bodyFromData, null, 2));
+}
+
+// 2) Override de headers depuis le dataset (si présent)
+//   - Exemple KO_REQ0001 : { "headers": { "numtecprs": null } }  -> supprime le header
+//   - Exemple KO_FCT0000 : { "headers": { "numtecprs": "0" } }   -> force "0"
+const hdrs = pm.iterationData.get('headers');
+if (hdrs && typeof hdrs === 'object') {
+  Object.entries(hdrs).forEach(([k, v]) => {
+    if (v === null) {
+      // retirer ce header
+      if (pm.request.headers.has(k)) pm.request.headers.remove(k);
+    } else {
+      // upsert valeur
+      pm.request.headers.upsert({ key: k, value: String(v) });
+    }
+  });
+}
