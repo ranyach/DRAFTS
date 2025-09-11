@@ -1,0 +1,56 @@
+[
+  {
+    "caseId": "OK_2_on_4",
+    "expected_status": 200,
+    "body": {
+      "proxies": [
+        { "proxy_hash": "QWeQr0O0rw0KYG4Mi4Rs5Uu-OyU-jnQj_2DY-H0pYN4=" },
+        { "proxy_hash": "aF0WKbmtBMWzmFIcNhj8a9SUxmr-Tob76QN1t7cRF-8=" },
+        { "proxy_hash": "I8J5N5ehwNIhzNtwupN4RP5pm9UjBIDUXllhWboOyG4=" },
+        { "proxy_hash": "O0A-3-nrkutw7x_NiU-X5hua9LUwXpWMZ-8P7eEyrxc=" }
+      ]
+    },
+    "expected_indicators": 2
+  },
+  {
+    "caseId": "OK_0_on_2",
+    "expected_status": 200,
+    "body": {
+      "proxies": [
+        { "proxy_hash": "QWeQr0O0rw0KYG4Mi4Rs5Uu-OyU-jnQj_2DY-H0pYN4=" },
+        { "proxy_hash": "aF0WKbmtBMWzmFIcNhj8a9SUxmr-Tob76QN1t7cRF-8=" }
+      ]
+    },
+    "expected_indicators": 0
+  },
+  {
+    "caseId": "KO_REQ0000",
+    "expected_status": 400,
+    "body": {}
+  },
+  {
+    "caseId": "KO_REQ0001",
+    "expected_status": 400,
+    "headers": { "numtecprs": null },
+    "body": { "proxies": [ { "proxy_hash": "HLn6nYjJPnGN-qPHwtg3yqbfnGbGXDe8cegEC3ivYLI=" } ] },
+    "expected_error_code": "REQ0001"
+  },
+  {
+    "caseId": "KO_REQ0030_absent",
+    "expected_status": 400,
+    "body": { "proxies": [ {} ] },
+    "expected_error_code": "REQ0030"
+  },
+  {
+    "caseId": "KO_REQ0030_vide",
+    "expected_status": 400,
+    "body": { "proxies": [ { "proxy_hash": "" } ] },
+    "expected_error_code": "REQ0030"
+  },
+  {
+    "caseId": "KO_EXT0048",
+    "expected_status": 500,
+    "body": { "proxies": [ { "proxy_hash": "HLn6nYjJPnGN-qPHwtg3yqbfnGbGXDe8cegEC3ivYLI=XXXX" } ] },
+    "expected_error_code": "EXT0048"
+  }
+]
