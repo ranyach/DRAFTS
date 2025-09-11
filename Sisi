@@ -1,0 +1,36 @@
+// Vérifier HTTP status
+const expectedStatus = pm.iterationData.get('expected_status');
+if (expectedStatus !== undefined) {
+  pm.test(`HTTP ${expectedStatus}`, () => pm.response.to.have.status(Number(expectedStatus)));
+}
+
+// Vérifier schéma minimal côté succès
+if (pm.response.code === 200) {
+  const r = pm.response.json();
+  pm.test("Présence de 'indicators'", () => pm.expect(r).to.have.property('indicators').that.is.an('array'));
+}
+
+// Vérifier schéma minimal côté erreur
+if (pm.response.code >= 400) {
+  const r = pm.response.json();
+  pm.test("Erreur {code,message}", () => {
+    pm.expect(r).to.have.property('code');
+    pm.expect(r).to.have.property('message');
+  });
+}
+
+// Vérif optionnelle du nombre d'indicators (pour les cas OK)
+const expectedIndicators = pm.iterationData.get('expected_indicators');
+if (expectedIndicators !== undefined) {
+  pm.test(`indicators.length == ${expectedIndicators}`, () => {
+    pm.expect(pm.response.json().indicators.length).to.eql(Number(expectedIndicators));
+  });
+}
+
+// Vérif optionnelle du code erreur (pour les cas KO)
+const expectedErrorCode = pm.iterationData.get('expected_error_code');
+if (expectedErrorCode) {
+  pm.test(`Code fonctionnel == ${expectedErrorCode}`, () => {
+    pm.expect(pm.response.json().code).to.eql(String(expectedErrorCode));
+  });
+}
