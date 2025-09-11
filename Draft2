@@ -1,0 +1,54 @@
+// ====== COMMON TESTS (folder level) ======
+const expected = {
+  status: pm.iterationData.get('expected_status'),
+  errorCode: pm.iterationData.get('expected_error_code'),   // ex: "REQ0001" ou "EXT0048"
+  schema: pm.iterationData.get('expected_schema')           // "OK" | "ERROR" | undefined
+};
+
+// 1) Statut HTTP
+if (expected.status) {
+  pm.test(`HTTP status == ${expected.status}`, () => {
+    pm.expect(pm.response.code).to.equal(Number(expected.status));
+  });
+}
+
+// 2) Schémas minimum
+const resp = pm.response.json();
+const is2xx = pm.response.code >= 200 && pm.response.code < 300;
+
+if (expected.schema === 'OK') {
+  pm.test('Réponse 200 – shape minimale', () => {
+    pm.expect(resp).to.be.an('object');
+    pm.expect(resp).to.have.property('indicators').that.is.an('array');
+    if (resp.indicators.length > 0) {
+      const it = resp.indicators[0];
+      pm.expect(it).to.have.property('proxy_hash');
+      pm.expect(it).to.have.property('can_be_payer').that.is.a('boolean');
+      pm.expect(it).to.have.property('pro').that.is.a('boolean');
+    }
+    pm.expect(resp).to.have.property('truncated').that.is.a('boolean');
+  });
+}
+
+if (expected.schema === 'ERROR') {
+  pm.test('Réponse erreur – shape {code,message}', () => {
+    pm.expect(resp).to.be.an('object');
+    pm.expect(resp).to.have.property('code');
+    pm.expect(resp).to.have.property('message');
+  });
+}
+
+// 3) Code fonctionnel d’erreur attendu
+if (expected.errorCode) {
+  pm.test(`Erreur fonctionnelle == ${expected.errorCode}`, () => {
+    pm.expect(resp.code).to.equal(String(expected.errorCode));
+  });
+}
+
+// 4) Sécurité : jamais de 2xx si sendWithoutNumtecprs
+const blocked = pm.variables.get('sendWithoutNumtecprs') === true;
+if (blocked) {
+  pm.test('Sécurité d’entrée (numtecprs manquant) – attends 400', () => {
+    pm.expect(pm.response.code).to.equal(400);
+  });
+}
