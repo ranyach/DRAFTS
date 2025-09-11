@@ -1,0 +1,15 @@
+// Toujours forcer JSON
+pm.request.headers.upsert({ key: 'Content-Type', value: 'application/json' });
+
+// CorrelationId auto
+if (!pm.request.headers.has('CorrelationId')) {
+  pm.request.headers.add({ key: 'CorrelationId', value: pm.variables.replaceIn('{{$guid}}') });
+}
+
+// numtecprs depuis env si non spécifié par la requête
+if (!pm.request.headers.has('numtecprs')) {
+  const ntp = pm.environment.get('numtecprs');
+  if (ntp && String(ntp).trim() !== '') {
+    pm.request.headers.add({ key: 'numtecprs', value: String(ntp) });
+  }
+}
