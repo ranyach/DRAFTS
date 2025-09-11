@@ -1,0 +1,11 @@
+{{!-- écrire dans le bucket dbg --}}
+{{setData 'dbg' 'hello' 'world'}}
+{{setData 'dbg' 'last' 'smoke-A'}}
+
+{{!-- renvoyer un JSON pour confirmer --}}
+{{{json (object
+  "ok" true
+  "resp" "smoke-A"
+  "dbg_hello" (data 'dbg' 'hello')
+  "dbg_last" (data 'dbg' 'last')
+)}}}
