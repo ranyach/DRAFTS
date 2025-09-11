@@ -1,0 +1,56 @@
+[
+  {
+    "name": "200 – OK simple",
+    "numtecprs": "4000000774",
+    "proxies": [ { "proxy_hash": "uT1CLsQ1AZPd_fUu1MS07IddzTQ4VpNGg08FcADOWrw=" } ],
+    "expected_status": 200,
+    "expected_schema": "OK"
+  },
+  {
+    "name": "400 – REQ0000 requête vide",
+    "numtecprs": "4000000774",
+    "proxies": [],
+    "expected_status": 400,
+    "expected_schema": "ERROR",
+    "expected_error_code": "REQ0000"
+  },
+  {
+    "name": "400 – REQ0001 numtecprs absent",
+    "proxies": [ { "proxy_hash": "HLn6nYjJPnGN-qPHwtg3yqbfnGbGXDe8cegEC3ivYLI=" } ],
+    "expected_status": 400,
+    "expected_schema": "ERROR",
+    "expected_error_code": "REQ0001"
+  },
+  {
+    "name": "400 – REQ0001 numtecprs invalide",
+    "numtecprs": "1234567891011",
+    "proxies": [ { "proxy_hash": "HLn6nYjJPnGN-qPHwtg3yqbfnGbGXDe8cegEC3ivYLI=" } ],
+    "expected_status": 400,
+    "expected_schema": "ERROR",
+    "expected_error_code": "REQ0001"
+  },
+  {
+    "name": "400 – REQ0030 proxy_hash absent",
+    "numtecprs": "4000000774",
+    "proxies": [ { } ],
+    "expected_status": 400,
+    "expected_schema": "ERROR",
+    "expected_error_code": "REQ0030"
+  },
+  {
+    "name": "400 – REQ0030 proxy_hash vide",
+    "numtecprs": "4000000774",
+    "proxies": [ { "proxy_hash": "" } ],
+    "expected_status": 400,
+    "expected_schema": "ERROR",
+    "expected_error_code": "REQ0030"
+  },
+  {
+    "name": "500 – EXT0048 proxy_hash invalide (selon coll actuelle)",
+    "numtecprs": "4000000774",
+    "proxies": [ { "proxy_hash": "INVALID" } ],
+    "expected_status": 500,
+    "expected_schema": "ERROR",
+    "expected_error_code": "EXT0048"
+  }
+]
