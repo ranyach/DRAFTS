@@ -1,0 +1,37 @@
+const D = pm.iterationData;
+const expected = D.get('expected') || {};
+let json = {};
+try { json = pm.response.json(); } catch(e) {}
+
+pm.test("HTTP status conforme", () => {
+  pm.expect(pm.response.code).to.eql(expected.status);
+});
+
+pm.test("Champ 'code' présent et correct", () => {
+  pm.expect(json).to.have.property("code");
+  pm.expect(json.code).to.eql(expected.code);
+});
+
+pm.test("Champ 'message' présent et correct", () => {
+  pm.expect(json).to.have.property("message");
+  pm.expect(json.message).to.eql(expected.message);
+});
+
+// Validation stricte du schéma {code, message}
+const errorSchema = {
+  type: "object",
+  required: ["code", "message"],
+  properties: {
+    code: { type: "string" },
+    message: { type: "string" }
+  },
+  additionalProperties: false
+};
+
+pm.test("La réponse respecte le schéma d'erreur attendu", () => {
+  pm.response.to.have.jsonSchema(errorSchema);
+});
+
+// Logs utiles
+console.log("EXPECTED", expected);
+console.log("ACTUAL", json);
