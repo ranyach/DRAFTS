@@ -1,0 +1,81 @@
+/* Helpers */
+const getJson = () => {
+  try { return pm.response.json(); } catch { return {}; }
+};
+const asSet = arr => new Set(arr || []);
+
+/* Données attendues */
+const D = pm.iterationData;
+const exp = D.get('expected') || {};
+const json = getJson();
+
+/* 1) Statut HTTP */
+pm.test('Status HTTP attendu', () => {
+  pm.expect(pm.response.code).to.eql(exp.status);
+});
+
+/* 2) Schéma de réponse OK */
+const okSchema = {
+  type: 'object',
+  required: ['indicators', 'truncated'],
+  properties: {
+    indicators: {
+      type: 'array',
+      items: {
+        type: 'object',
+        required: ['proxy_hash', 'can_be_payer', 'pro'],
+        properties: {
+          proxy_hash: { type: 'string' },
+          can_be_payer: { type: 'boolean' },
+          pro: { type: 'boolean' }
+        },
+        additionalProperties: false
+      }
+    },
+    truncated: { type: 'boolean' }
+  },
+  additionalProperties: false
+};
+pm.test('Schéma OK conforme', () => {
+  pm.response.to.have.jsonSchema(okSchema);
+});
+
+/* 3) Champs racine attendus */
+pm.test('truncated conforme', () => {
+  pm.expect(json.truncated, 'truncated').to.eql(exp.expectedTruncated);
+});
+
+/* 4) Nombre d’indicateurs trouvés */
+pm.test('Nombre de résultats conforme', () => {
+  pm.expect(json.indicators.length, 'indicators.length')
+    .to.eql(exp.expectedFound);
+});
+
+/* 5) Contenu des indicators : types + longueur hash (si requise) */
+pm.test('Indicators: types & formats', () => {
+  json.indicators.forEach((it, i) => {
+    pm.expect(it).to.have.property('proxy_hash');
+    pm.expect(it).to.have.property('can_be_payer');
+    pm.expect(it).to.have.property('pro');
+    if (exp.proxyHashLength) {
+      pm.expect(it.proxy_hash.length, `proxy_hash[${i}] length`)
+        .to.eql(exp.proxyHashLength);
+    }
+    pm.expect(it.can_be_payer).to.be.a('boolean');
+    pm.expect(it.pro).to.be.a('boolean');
+  });
+});
+
+/* 6) Vérifier l’ensemble exact des proxy_hash attendus (ordre indifférent) */
+pm.test('Set des proxy_hash retournés conforme', () => {
+  const returned = asSet(json.indicators.map(x => x.proxy_hash));
+  const expected = asSet(exp.expectedFoundHashes || []);
+  // A ⊆ B et B ⊆ A -> ensembles égaux
+  expected.forEach(val => pm.expect(returned.has(val), `manquant: ${val}`).to.be.true);
+  returned.forEach(val => pm.expect(expected.has(val), `inattendu: ${val}`).to.be.true);
+});
+
+/* Logs utiles */
+console.log('CASE', D.get('caseId'));
+console.log('EXPECTED', exp);
+console.log('ACTUAL.indicators', json.indicators);
