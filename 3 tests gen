@@ -1,0 +1,37 @@
+const D = pm.iterationData;
+const expected = D.get('expected') || {};
+let json = {};
+try { json = pm.response.json(); } catch (e) {}
+
+pm.test('HTTP status conforme', () => {
+  pm.expect(pm.response.code).to.eql(expected.status);
+});
+
+pm.test('Présence du champ code', () => {
+  pm.expect(json).to.have.property('code');
+});
+
+// Vérifie que msg contient tous les fragments attendus (ordre indifférent)
+if (Array.isArray(expected.messageTokens) && expected.messageTokens.length) {
+  pm.test('Message contient les fragments attendus', () => {
+    const msg = String(json.message || '');
+    expected.messageTokens.forEach(tok => pm.expect(msg.toLowerCase()).to.include(String(tok).toLowerCase()));
+  });
+}
+
+// (optionnel) si tu veux aussi figer la valeur exacte :
+if (expected.code !== undefined) {
+  pm.test('Code exact', () => pm.expect(json.code).to.eql(expected.code));
+}
+
+/* --- Assertions qualité (facultatives – à activer si vous voulez) ---
+pm.test('Content-Type JSON', () => {
+  pm.response.to.have.header('Content-Type');
+  pm.expect(pm.response.headers.get('Content-Type')).to.match(/application\/json/i);
+});
+pm.test('Temps de réponse < 3000 ms', () => pm.expect(pm.response.responseTime).to.be.below(3000));
+----------------------------------------------------------------------- */
+
+// Logs utiles
+console.log('EXPECTED', expected);
+console.log('ACTUAL', json);
