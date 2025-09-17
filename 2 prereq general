@@ -1,0 +1,26 @@
+const D = pm.iterationData;
+
+// URL + body
+pm.variables.set('path', D.get('path'));
+pm.variables.set('payload', JSON.stringify(D.get('payload') || {}));
+
+// Surcharge/suppression du header numtecprs
+const spec = D.get('headersSpec') || {};
+Object.entries(spec).forEach(([name, cfg]) => {
+  const op = (cfg && cfg.op || '').toLowerCase();
+  if (op === 'absent') pm.request.headers.remove(name);
+  else if (op === 'set') pm.request.headers.upsert({ key: name, value: String(cfg.value ?? '') });
+});
+
+// corrélation par défaut si non présent
+if (!pm.request.headers.has('x-correlation-id')) {
+  pm.request.headers.upsert({ key: 'x-correlation-id', value: pm.variables.replaceIn('{{$guid}}') });
+}
+
+// Logs lisibles
+console.log('CASE:', D.get('caseId'));
+console.log('REQUEST', {
+  url: pm.variables.replaceIn(pm.request.url.toString()),
+  headers: pm.request.headers.toObject(),
+  body: JSON.parse(pm.variables.get('payload'))
+});
