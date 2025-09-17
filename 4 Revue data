@@ -1,0 +1,84 @@
+[
+  {
+    "caseId": "NUMTECPRS_ABSENT",
+    "headersSpec": {
+      "numtecprs": { "op": "absent" }
+    },
+    "payload": {
+      "proxies": ["{{valid_proxy_hash}}"]
+    },
+    "expected": {
+      "status": 400,
+      "code": "REQ0001",
+      "message": "Paramètre d'appel 'numtecprs' absent"
+    }
+  },
+  {
+    "caseId": "NUMTECPRS_VIDE",
+    "headersSpec": {
+      "numtecprs": { "op": "set", "value": "" }
+    },
+    "payload": {
+      "proxies": ["{{valid_proxy_hash}}"]
+    },
+    "expected": {
+      "status": 400,
+      "code": "REQ0001",
+      "message": "Paramètre d'appel 'numtecprs' vide"
+    }
+  },
+  {
+    "caseId": "NUMTECPRS_INVALIDE",
+    "headersSpec": {
+      "numtecprs": { "op": "set", "value": "###INVALID###" }
+    },
+    "payload": {
+      "proxies": ["{{valid_proxy_hash}}"]
+    },
+    "expected": {
+      "status": 400,
+      "code": "REQ0001",
+      "message": "Paramètre d'appel 'numtecprs' invalide"
+    }
+  },
+  {
+    "caseId": "PROXIES_ABSENT",
+    "headersSpec": {
+      "numtecprs": { "op": "set", "value": "{{valid_numtecprs}}" }
+    },
+    "payload": { },
+    "expected": {
+      "status": 400,
+      "code": "REQ0030",
+      "message": "Paramètre d'appel 'proxies' absent"
+    }
+  },
+  {
+    "caseId": "PROXIES_VIDE",
+    "headersSpec": {
+      "numtecprs": { "op": "set", "value": "{{valid_numtecprs}}" }
+    },
+    "payload": {
+      "proxies": []
+    },
+    "expected": {
+      "status": 400,
+      "code": "REQ0030",
+      "message": "Paramètre d'appel 'proxies' vide"
+    }
+  },
+  {
+    "caseId": "PROXY_HASH_INVALIDE",
+    "headersSpec": {
+      "numtecprs": { "op": "set", "value": "{{valid_numtecprs}}" }
+    },
+    "payload": {
+      "proxies": ["??bad-hash??"]
+    },
+    "expected": {
+      "status": 400,
+      "code": "EXT0048",
+      "message": "Paramètre d'appel 'proxy_hash' invalide"
+    }
+  }
+]
