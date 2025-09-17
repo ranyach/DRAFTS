@@ -1,0 +1,93 @@
+[
+  /* === A) Tests NUMTECPRS (header) === */
+  {
+    "caseId": "REQ0001_numtecprs_absent",
+    "path": "",
+    "payload": {
+      "proxies": [ "{{valid_proxy_hash_1}}", "{{valid_proxy_hash_2}}" ]
+    },
+    "headersSpec": {
+      "numtecprs": { "op": "absent" }
+    },
+    "expected": {
+      "status": 400,
+      "code": "REQ0001",
+      "messageTokens": ["numtecprs", "absent", "vide", "invalide"]
+    }
+  },
+  {
+    "caseId": "REQ0001_numtecprs_vide",
+    "path": "",
+    "payload": {
+      "proxies": [ "{{valid_proxy_hash_1}}", "{{valid_proxy_hash_2}}" ]
+    },
+    "headersSpec": {
+      "numtecprs": { "op": "set", "value": "" }
+    },
+    "expected": {
+      "status": 400,
+      "code": "REQ0001",
+      "messageTokens": ["numtecprs", "absent", "vide", "invalide"]
+    }
+  },
+  {
+    "caseId": "REQ0001_numtecprs_invalide",
+    "path": "",
+    "payload": {
+      "proxies": [ "{{valid_proxy_hash_1}}", "{{valid_proxy_hash_2}}" ]
+    },
+    "headersSpec": {
+      "numtecprs": { "op": "set", "value": "###INVALID###" }
+    },
+    "expected": {
+      "status": 400,
+      "code": "REQ0001",
+      "messageTokens": ["numtecprs", "absent", "vide", "invalide"]
+    }
+  },
+
+  /* === B) Tests PROXY_HASH (dans body.proxies) === */
+  {
+    "caseId": "REQ0030_proxies_absent",
+    "path": "",
+    "payload": { },
+    "headersSpec": {
+      "numtecprs": { "op": "set", "value": "{{valid_numtecprs}}" }
+    },
+    "expected": {
+      "status": 400,
+      "code": "REQ0030",
+      "messageTokens": ["proxy_hash", "absent"]
+    }
+  },
+  {
+    "caseId": "REQ0030_proxies_vide_array",
+    "path": "",
+    "payload": {
+      "proxies": []
+    },
+    "headersSpec": {
+      "numtecprs": { "op": "set", "value": "{{valid_numtecprs}}" }
+    },
+    "expected": {
+      "status": 400,
+      "code": "REQ0030",
+      "messageTokens": ["proxy_hash", "vide"]
+    }
+  },
+  {
+    "caseId": "EXT0048_proxy_hash_invalide",
+    "path": "",
+    "payload": {
+      "proxies": [ "??bad-hash??" ]
+    },
+    "headersSpec": {
+      "numtecprs": { "op": "set", "value": "{{valid_numtecprs}}" }
+    },
+    "expected": {
+      "status": 400,
+      "code": "EXT0048",
+      "messageTokens": ["proxy_hash", "invalide"]
+    }
+  }
+]
