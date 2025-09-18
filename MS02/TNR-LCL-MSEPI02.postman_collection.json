@@ -1,0 +1,3212 @@
+{
+	"info": {
+		"_postman_id": "f36dda38-4050-421d-9649-adc5e7d8b66f",
+		"name": "TNR-LCL-MSEPI02",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34476351"
+	},
+	"item": [
+		{
+			"name": "GET /proxy",
+			"item": [
+				{
+					"name": "🛑 KO Contrôles données entrantes",
+					"item": [
+						{
+							"name": "KO🛑/REQ0001/Numtecprs vide",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "CorrelationId",
+										"value": "XX",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Context-Distribution-Portal-Code",
+										"value": "16",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "context-user-id",
+										"value": "7172259600",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "numtecprs",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy/{{proxy_hash}}",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy",
+										"{{proxy_hash}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0001/Numtecprs absent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "CorrelationId",
+										"value": "XX",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Context-Distribution-Portal-Code",
+										"value": "16",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "context-user-id",
+										"value": "7172259600",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "numtecprs",
+										"value": "11",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy/{{proxy_hash}}",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy",
+										"{{proxy_hash}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "🛑 KO Contrôles données fonctionnels",
+					"item": []
+				},
+				{
+					"name": "✅ OK Passant si JDD toujours existants chez EPI",
+					"item": [
+						{
+							"name": "KO🛑/EXT0038/Proxy non enrôlé",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 404\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(404);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"EXT0038\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Disponibilité proxy – Le proxy n'existe pas dans EPI.\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "CorrelationId",
+										"value": "XX",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Context-Distribution-Portal-Code",
+										"value": "16",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "context-user-id",
+										"value": "7172259600",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "numtecprs",
+										"value": "932111122",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy/9bB03dctee2ZZV6sc70jHRr0FuUR_QFOzmAbyK-wkvA=",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy",
+										"9bB03dctee2ZZV6sc70jHRr0FuUR_QFOzmAbyK-wkvA="
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "POST /proxy",
+			"item": [
+				{
+					"name": "🛑 KO Contrôles données entrantes",
+					"item": [
+						{
+							"name": "KO🛑/REQ0000/Requete vide",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0000\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Requete vide en entrée\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0001/numtecprs vide",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numtecprs\": \"\",\r\n  \"iban\": \"FR6430002030000000584938R52\",\r\n  \"proxy\": {\r\n    \"type\": \"PhoneNumber\",\r\n    \"value\": \"+33614851412\"\r\n  },\r\n  \"proxy_transfer_confirm\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0001/numtecprs absent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"iban\": \"FR6430002030000000584938R52\",\r\n  \"proxy\": {\r\n    \"type\": \"PhoneNumber\",\r\n    \"value\": \"+33614851412\"\r\n  },\r\n  \"proxy_transfer_confirm\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0001/numtecprs incorrect",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numtecprs\": \"11111111111\",\r\n  \"iban\": \"FR6430002030000000584938R52\",\r\n  \"proxy\": {\r\n    \"type\": \"PhoneNumber\",\r\n    \"value\": \"+33614851412\"\r\n  },\r\n  \"proxy_transfer_confirm\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0021/iban vide",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0021\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'iban' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numtecprs\": 2008514842,\r\n  \"iban\": \"\",\r\n  \"proxy\": {\r\n    \"type\": \"PhoneNumber\",\r\n    \"value\": \"+33614851412\"\r\n  },\r\n  \"proxy_transfer_confirm\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0021/iban absent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0021\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'iban' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numtecprs\": 2008514842,\r\n  \"proxy\": {\r\n    \"type\": \"PhoneNumber\",\r\n    \"value\": \"+33614851412\"\r\n  },\r\n  \"proxy_transfer_confirm\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0021/iban incorrect",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0021\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'iban' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numtecprs\": 2008514842,\r\n  \"iban\": \"XX\",\r\n  \"proxy\": {\r\n    \"type\": \"PhoneNumber\",\r\n    \"value\": \"+33614851412\"\r\n  },\r\n  \"proxy_transfer_confirm\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0045/Proxy_type vide",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0045\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ ‘type’ absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numtecprs\": 2008514842,\r\n  \"iban\": \"FR6430002030000000584938R52\",\r\n  \"proxy\": {\r\n    \"type\": \"\",\r\n    \"value\": \"+33614851412\"\r\n  },\r\n  \"proxy_transfer_confirm\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0045/Proxy_type absent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0045\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ ‘type’ absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numtecprs\": 2008514842,\r\n  \"iban\": \"FR6430002030000000584938R52\",\r\n  \"proxy\": {\r\n    \"value\": \"+33614851412\"\r\n  },\r\n  \"proxy_transfer_confirm\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0045/Proxy_type incorrect",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0045\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ ‘type’ absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numtecprs\": 2008514842,\r\n  \"iban\": \"FR6430002030000000584938R52\",\r\n  \"proxy\": {\r\n    \"type\": \"AZZZ\",\r\n    \"value\": \"+33614851412\"\r\n  },\r\n  \"proxy_transfer_confirm\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0045/Proxy_value vide",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0031\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'proxy' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numtecprs\": 2008514842,\r\n  \"iban\": \"FR6430002030000000584938R52\",\r\n  \"proxy\": {\r\n    \"type\": \"PhoneNumber\",\r\n    \"value\": \"\"\r\n  },\r\n  \"proxy_transfer_confirm\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0045/Proxy_value absent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0031\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'proxy' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numtecprs\": 2008514842,\r\n  \"iban\": \"FR6430002030000000584938R52\",\r\n  \"proxy\": {\r\n    \"type\": \"PhoneNumber\"\r\n  },\r\n  \"proxy_transfer_confirm\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0045/Proxy_value incorrect tel",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0031\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'proxy' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numtecprs\": 2008514842,\r\n  \"iban\": \"FR6430002030000000584938R52\",\r\n  \"proxy\": {\r\n    \"type\": \"PhoneNumber\",\r\n    \"value\": \"33615478596\"\r\n  },\r\n  \"proxy_transfer_confirm\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0045/Proxy_value incorrect mail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0031\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'proxy' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numtecprs\": 2008514842,\r\n  \"iban\": \"FR6430002030000000584938R52\",\r\n  \"proxy\": {\r\n    \"type\": \"PhoneNumber\",\r\n    \"value\": \"testgmail.com\"\r\n  },\r\n  \"proxy_transfer_confirm\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0045/proxyTransferConfirm absent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0029\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'proxyTransferConfirm' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numtecprs\": 2008514842,\r\n  \"iban\": \"FR6430002030000000584938R52\",\r\n  \"proxy\": {\r\n    \"type\": \"PhoneNumber\",\r\n    \"value\": \"+33696857474\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0045/proxyTransferConfirm vide",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0029\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'proxyTransferConfirm' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"numtecprs\": 2008514842,\r\n  \"iban\": \"FR6430002030000000584938R52\",\r\n  \"proxy\": {\r\n    \"type\": \"PhoneNumber\",\r\n    \"value\": \"+33696857474\"\r\n  },\r\n  \"proxy_transfer_confirm\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "🛑 KO Contrôles fonctionnels",
+					"item": []
+				}
+			]
+		},
+		{
+			"name": "PATCH /proxy/{proxy_value}",
+			"item": [
+				{
+					"name": "🛑 KO Contrôles données entrantes",
+					"item": [
+						{
+							"name": "KO🛑/REQ0001/numtecprs vide",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"Disabled\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy/9bB03dctee2ZZV6sc70jHRr0FuUR_QFOzmAbyK-wkvA=?numtecprs= ",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy",
+										"9bB03dctee2ZZV6sc70jHRr0FuUR_QFOzmAbyK-wkvA="
+									],
+									"query": [
+										{
+											"key": "numtecprs",
+											"value": " "
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0001/numtecprs absent",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"Disabled\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy/9bB03dctee2ZZV6sc70jHRr0FuUR_QFOzmAbyK-wkvQ=",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy",
+										"9bB03dctee2ZZV6sc70jHRr0FuUR_QFOzmAbyK-wkvQ="
+									],
+									"query": [
+										{
+											"key": "numtecprs",
+											"value": " ",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0001/numtecprs incorrect",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"Disabled\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy/9bB03dctee2ZZV6sc70jHRr0FuUR_QFOzmAbyK-wkvQ=?numtecprs=111111111111",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy",
+										"9bB03dctee2ZZV6sc70jHRr0FuUR_QFOzmAbyK-wkvQ="
+									],
+									"query": [
+										{
+											"key": "numtecprs",
+											"value": "111111111111"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0001/status incorrect",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0044\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ ‘status’ absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy/9bB03dctee2ZZV6sc70jHRr0FuUR_QFOzmAbyK-wkvA=?numtecprs=111111111",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy",
+										"9bB03dctee2ZZV6sc70jHRr0FuUR_QFOzmAbyK-wkvA="
+									],
+									"query": [
+										{
+											"key": "numtecprs",
+											"value": "111111111"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "🛑 KO Contrôles fonctionnels",
+					"item": [
+						{
+							"name": "KO🛑/FCT0001/Client non enrôlé",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(404);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"FCT0000\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Le client n’est pas enrôlé dans EPI ou a été supprimé.\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"Disabled\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy/9bB03dctee2ZZV6sc70jHRr0FuUR_QFOzmAbyK-wkvA=?numtecprs=111111111",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy",
+										"9bB03dctee2ZZV6sc70jHRr0FuUR_QFOzmAbyK-wkvA="
+									],
+									"query": [
+										{
+											"key": "numtecprs",
+											"value": "111111111"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "PATCH /proxy",
+			"item": [
+				{
+					"name": "🛑 KO Contrôles données entrantes",
+					"item": [
+						{
+							"name": "KO🛑/REQ0001/numtecprs vide",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"Disabled\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy?numtecprs= ",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									],
+									"query": [
+										{
+											"key": "numtecprs",
+											"value": " "
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0001/numtecprs absent",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"Disabled\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									],
+									"query": [
+										{
+											"key": "numtecprs",
+											"value": " ",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0001/numtecprs incorrect",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"Disabled\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy?numtecprs=111111111111",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									],
+									"query": [
+										{
+											"key": "numtecprs",
+											"value": "111111111111"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0001/iban absent",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0021\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'iban' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy?numtecprs=111111111",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									],
+									"query": [
+										{
+											"key": "numtecprs",
+											"value": "111111111"
+										},
+										{
+											"key": "iban",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0001/iban vide",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0021\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'iban' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy?numtecprs=111111111",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									],
+									"query": [
+										{
+											"key": "numtecprs",
+											"value": "111111111"
+										},
+										{
+											"key": "iban",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KO🛑/REQ0001/iban incorrect",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(400);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"REQ0021\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Champ 'iban' absent ou vide ou invalide\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy?numtecprs=111111111&iban=EN",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									],
+									"query": [
+										{
+											"key": "numtecprs",
+											"value": "111111111"
+										},
+										{
+											"key": "iban",
+											"value": "EN"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "🛑 KO Contrôles fonctionnels",
+					"item": [
+						{
+							"name": "KO🛑/FCT0001/Client non enrôlé",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 500);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+											"  pm.expect(pm.response.code).to.equal(404);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"  \r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData).to.have.property('code');\r",
+											"  pm.expect(responseData).to.have.property('message');\r",
+											"});\r",
+											"\r",
+											"// Test to check for a specific value in the response body\r",
+											"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+											"\r",
+											"    pm.expect(responseData.code).to.equal(\"FCT0000\");\r",
+											"    pm.expect(responseData.message).to.equal(\"Le client n’est pas enrôlé dans EPI ou a été supprimé.\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{password_msepi}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{user_msepi}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Context-Acquisition-Channel",
+										"value": "MO",
+										"type": "text"
+									},
+									{
+										"key": "Context-User-Profile-Code",
+										"value": "L",
+										"type": "text"
+									},
+									{
+										"key": "CorrelationId",
+										"value": "{{$guid}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{base_url_msepi}}{{context_root_msepi02}}/proxy?numtecprs=111111111&iban=FR7430002006780000051902Y13",
+									"host": [
+										"{{base_url_msepi}}{{context_root_msepi02}}"
+									],
+									"path": [
+										"proxy"
+									],
+									"query": [
+										{
+											"key": "numtecprs",
+											"value": "111111111"
+										},
+										{
+											"key": "iban",
+											"value": "FR7430002006780000051902Y13"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
