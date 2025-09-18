@@ -1,0 +1,469 @@
+{
+	"info": {
+		"_postman_id": "d3875343-c83d-44b5-8e9b-dfed2dd31ab6",
+		"name": "TNR-LCL-MSEPI03",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36989542"
+	},
+	"item": [
+		{
+			"name": "KO contrôles données entrantes",
+			"item": [
+				{
+					"name": "ibans/KO🛑/REQ0001/numtecprs absent",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, 500);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+									"  pm.expect(pm.response.code).to.equal(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData).to.have.property('code');\r",
+									"  pm.expect(responseData).to.have.property('message');\r",
+									"});\r",
+									"\r",
+									"// Test to check for a specific value in the response body\r",
+									"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+									"\r",
+									"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+									"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide.\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password_msepi}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user_msepi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_msepi}}{{context_root_msepi03}}/ibans",
+							"host": [
+								"{{base_url_msepi}}{{context_root_msepi03}}"
+							],
+							"path": [
+								"ibans"
+							],
+							"query": [
+								{
+									"key": "numtecprs",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ibans/KO🛑/REQ0001/numtecprs vide",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, 500);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Le code réponse HTTP est 400\", function () {\r",
+									"  pm.expect(pm.response.code).to.equal(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData).to.have.property('code');\r",
+									"  pm.expect(responseData).to.have.property('message');\r",
+									"});\r",
+									"\r",
+									"// Test to check for a specific value in the response body\r",
+									"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+									"\r",
+									"    pm.expect(responseData.code).to.equal(\"REQ0001\");\r",
+									"    pm.expect(responseData.message).to.equal(\"Champ 'numtecprs' absent ou vide ou invalide.\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password_msepi}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user_msepi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_msepi}}{{context_root_msepi03}}/ibans?numtecprs=",
+							"host": [
+								"{{base_url_msepi}}{{context_root_msepi03}}"
+							],
+							"path": [
+								"ibans"
+							],
+							"query": [
+								{
+									"key": "numtecprs",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ibans/KO🛑/EXT0054/numtecprs invalide",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, 500);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Le code réponse HTTP est 500\", function () {\r",
+									"  pm.expect(pm.response.code).to.equal(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La réponse contient les champs code et message\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData).to.have.property('code');\r",
+									"  pm.expect(responseData).to.have.property('message');\r",
+									"});\r",
+									"\r",
+									"// Test to check for a specific value in the response body\r",
+									"pm.test(\"Les champs code et message contiennent les valeurs attendues\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    const expectedErrorMessage = \"Invalid error code or message\";\r",
+									"\r",
+									"    pm.expect(responseData.code).to.equal(\"EXT0054\");\r",
+									"    pm.expect(responseData.message).to.equal(\"Transaction W900 - Paramètres d'entrée manquants ou en erreur.\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password_msepi}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user_msepi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_msepi}}{{context_root_msepi03}}/ibans?numtecprs=012345678900",
+							"host": [
+								"{{base_url_msepi}}{{context_root_msepi03}}"
+							],
+							"path": [
+								"ibans"
+							],
+							"query": [
+								{
+									"key": "numtecprs",
+									"value": "012345678900"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OK avec liste vide",
+			"item": [
+				{
+					"name": "ibans/OK/client détenteur uniquement d'un PEA non éligible",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, 500);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Le code réponse HTTP est 200\", function () {\r",
+									"  pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La réponse contient un tableau/array vide\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseData).to.exist;\r",
+									"  pm.expect(responseData.iban_list).to.be.an('array').that.is.empty;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password_msepi}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user_msepi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_msepi}}{{context_root_msepi03}}/ibans?numtecprs=9500000474",
+							"host": [
+								"{{base_url_msepi}}{{context_root_msepi03}}"
+							],
+							"path": [
+								"ibans"
+							],
+							"query": [
+								{
+									"key": "numtecprs",
+									"value": "9500000474"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ibans/OK/client mineur non éligible",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, 500);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Le code réponse HTTP est 200\", function () {\r",
+									"  pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La réponse contient un tableau/array vide\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseData).to.exist;\r",
+									"  pm.expect(responseData.iban_list).to.be.an('array').that.is.empty;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password_msepi}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user_msepi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_msepi}}{{context_root_msepi03}}/ibans?numtecprs=2358265664",
+							"host": [
+								"{{base_url_msepi}}{{context_root_msepi03}}"
+							],
+							"path": [
+								"ibans"
+							],
+							"query": [
+								{
+									"key": "numtecprs",
+									"value": "2358265664"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ibans/OK/client majeur protégé non éligible",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, 500);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Le code réponse HTTP est 200\", function () {\r",
+									"  pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"La réponse contient un tableau/array vide\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"\r",
+									"  pm.expect(responseData).to.exist;\r",
+									"  pm.expect(responseData.iban_list).to.be.an('array').that.is.empty;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{password_msepi}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{user_msepi}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_msepi}}{{context_root_msepi03}}/ibans?numtecprs=3447428358",
+							"host": [
+								"{{base_url_msepi}}{{context_root_msepi03}}"
+							],
+							"path": [
+								"ibans"
+							],
+							"query": [
+								{
+									"key": "numtecprs",
+									"value": "3447428358"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
