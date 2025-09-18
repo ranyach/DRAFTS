@@ -1,0 +1,368 @@
+openapi: 3.0.1
+info:
+  version: 0.0.4
+  title: MSEPI02
+  description: API for using EPI directory features
+  contact:
+    name: SNI / FIP / PAY / GIP / MOE
+    email: LDD_LCL_SNI_PAY_GIP_MOE@lcl.fr
+servers:
+  - url: 'https://rct-msepi02.hors-prod.caas.lcl.gca'
+  - url: 'https://dvl-msepi02.hors-prod.caas.lcl.gca'
+paths:
+  /proxy:
+    post:
+      summary: Créer un proxy
+      description: Crée un Contact Item & l'associe au PaymentSourceProfile en tant que Proxy.
+      parameters:
+        - name: "Correlationid"
+          in: "header"
+          description: "Identifiant correlation permet le suivi global des appels au travers des micro-services"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProxyRequest'
+      responses:
+        '200':
+          description: OK - Created.
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ProxyResponse'
+        '400':
+          description: The data was submitted in an invalid format.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: The treatment is interrupted due to a functional error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: No data was found from the provided criteria.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: An internal server error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      summary: Delete all contacts items associated with the account
+      description: Delete Contacts Items (and proxies) associated to the PaymentSourceProfile 
+      parameters:
+        - name: Correlationid
+          in: header
+          required: true
+          description: Identifiant unique de corrélation pour tracer la requête.
+          schema:
+            type: string
+            format: uuid
+        - name: numtecprs
+          in: query
+          required: true
+          description: User technical identifier.
+          schema:
+            type: number
+            maxLength: 10
+        - name: iban
+          in: query
+          required: true
+          description: Device identifier.
+          schema:
+            type: string
+        
+      responses:
+        '204':
+          description: No Content.
+          content: {}
+            
+        '400':
+          description: The data was submitted in an invalid format.
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: The treatment is interrupted due to a functional error.
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: No data was found from the provided criteria.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: An internal server error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /proxy/{proxy_hash}:             
+    get:
+      summary: 'Demande le détail d’un proxy'
+      description: 'Cette méthode permet de récupérer les informations associées au proxy à partir des bases EPI. S''il s''agit d''un proxy LCL, l''IBAN et le numtecprs sont également restitués'
+      parameters:
+        - name: proxy_hash
+          in: path
+          required: true
+          description: Valeur du proxy hashé.
+          schema:
+            type: string
+            maxLength: 255
+        - name: "Correlationid"
+          in: "header"
+          description: "Identifiant correlation permet le suivi global des appels au travers des micro-services"
+          required: false
+          schema:
+            type: "string"
+            format: "uuid" 
+        - name: "numtecprs"
+          in: "header"
+          description: "User technical Identifier."
+          required: false
+          schema:
+            type: "string"
+      responses:
+        '200':
+          description: Treatment OK - User enroled and information is returned.
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ProxyResponse'
+        '400':
+          description: The data was submitted in an invalid format.
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: The treatment is interrupted due to a functional error.
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: No data was found from the provided criteria.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: An internal server error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '501':
+          description: An applicative error occured during the treatment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: One of the services whose the application depends is unavailable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'    
+  /proxy/{proxy_value}:             
+    patch:
+      summary: 'Suppression d''un proxy & du contact item'
+      description: 'Supprime le lien proxy d''un contact item/PaymentSourceProfile -> Passage au statut Disabled d''un proxy dans la base miroir + Suppression du contact item '
+      parameters:
+        - name: proxy_value
+          in: path
+          required: true
+          description: Valeur du proxy.
+          schema:
+            type: string
+            maxLength: 255
+        - name: "Correlationid"
+          in: "header"
+          description: "Identifiant correlation permet le suivi global des appels au travers des micro-services"
+          required: true
+          schema:
+            type: "string"
+            format: "uuid" 
+        - name: "numtecprs"
+          in: query
+          description: "User technical Identifier."
+          required: true
+          schema:
+            type: "string"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchRequest'
+      responses:
+        '204':
+          description: No Content.
+          content: {}
+            
+        '400':
+          description: The data was submitted in an invalid format.
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: The treatment is interrupted due to a functional error.
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: No data was found from the provided criteria.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: An internal server error occured.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '501':
+          description: An applicative error occured during the treatment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: One of the services whose the application depends is unavailable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    status:
+      type: string
+      example: Disabled
+    ProxyRequest:
+      description: Request to create contact and IBAN of a EPI user.
+      type: object
+      properties:
+        numtecprs:    
+          type: number
+          format: long
+          description: User technical Identifier.
+          example: 3000000082 
+        iban:
+          type: string
+          minLength: 14
+          maxLength: 34
+          description: IBAN of beneficiary
+          example: FR8130002003900000043501J13
+        proxy:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - PhoneNumber
+              - EmailAddress
+              description: 'Type of the contact item: phone number or email address'
+              example: PhoneNumber
+            value:
+              type: string
+              description: Value of the proxy. Phone number or email address.
+              example: '+33634567890'
+        proxy_transfer_confirm:
+           type: boolean
+           description: >-
+             indicate if this proxy is associated to LCL account.
+           example: false
+    ProxyResponse:
+      description: Response to create contact and IBAN of a EPI user.
+      type: object
+      properties:
+        numtecprs:    
+          type: number
+          format: long
+          description: User technical Identifier.
+          example: 3000000082 
+        iban:
+          type: string
+          minLength: 14
+          maxLength: 34
+          description: IBAN of beneficiary
+          example: FR8130002003900000043501J13
+        proxy:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - PhoneNumber
+              - EmailAddress
+              description: 'Type of the contact item: phone number or email address'
+              example: PhoneNumber
+            value:
+              type: string
+              description: Value of the proxy. Phone number or email address.
+              example: '+33634567890'      
+        display_name:
+          type: string
+          maxLength: 255
+          description: 'Affiche le nom du client au complet (comme enregistré par la banque) ou de façon pseudonisé/masqué selon les préférences choisies par le client'
+          example: Frederic F****            
+        can_be_payer:
+           type: boolean
+           description: >-
+             Indique si le client associé au proxy peut agir en tant que payeur et répondre aux demandes de paiement.
+           example: false  
+    PatchRequest:
+      description: Request body to update it contains statut.
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/status'
+    ErrorResponse:
+        type: object
+        properties:
+          code:
+            type: string
+          message:
+            type: string
