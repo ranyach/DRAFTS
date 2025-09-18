@@ -1,0 +1,136 @@
+openapi: 3.0.1
+info:
+  version: "1.0"
+  title: "MSEPI03"
+  description: |
+    Service Eligible account of EPI API.
+    This service return a list of IBAN availables for EPI
+servers:
+- "url" : "https://dvl-msepi03.hors-prod.caas.lcl.gca"
+  "description" : "API de développement"
+paths:
+  /ibans:
+    get:
+      tags:
+        - listIban
+      summary: "retrieve the list of available ibans"
+      description: >
+        ### Description
+
+        This call returns all iban from a lcl custommer which are available.
+
+        The result may be subject to pagination (i.e. retrieving a partial
+        result in case of having too many results) through a set of pages by the
+        ASPSP. Thereafter, the AISP may ask for the first, next, previous or
+        last page of results.
+          
+      operationId: "ibansGet"
+      parameters:
+      - in: "query"
+        name: "client_id"
+        required: true
+        schema:
+          type: "string"
+        description: "Identifiant client (NUMTECPRS)"
+      - name: "Correlationid"
+        in: "header"
+        description: "Identifiant correlation permet le suivi global des appels au travers des micro-services"
+        required: false
+        schema:
+          type: "string"
+          format: "uuid"
+      responses:
+        "500":
+          description: "Internal server error"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/errorList"
+              examples:
+                A001:
+                  description: "A001"
+                  value:
+                  - code: "A001"
+                    message: "A SERVER ERROR OCCURRED"
+        "401":
+          description: "Utilisateur non authentifié - Bad credentials"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/errorList"
+              examples:
+                T003:
+                  description: "T003"
+                  value:
+                  - code: "T003"
+                    message: "YOU ARE NOT AUTHORIZED TO PERFORM THIS ACTION"
+        "400":
+          description: "Bad Request - Erreurs fonctionnelles"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/errorList"
+              examples:
+                B002:
+                  description: "B002"
+                  value:
+                  - code: "B002"
+                    message: "format de numtecprs erroné"
+        "200":
+          description: "OK - Restitue les Ibans d'un client d'un client selon son identifiant ( numtecprs) "
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListeIbans"
+        "404":
+          description: "Identifiant personne non trouvé"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/errorList"
+              examples:
+                B001:
+                  description: "B001"
+                  value:
+                  - code: "B001"
+                    message: "PERSON NOT FOUND"
+components:
+  schemas:
+    error:
+      type: "object"
+      properties:
+        code:
+          type: "string"
+          description: "code de l'erreur technique"
+          example: "001"
+        message:
+          type: "string"
+          description: "Message d'erreur technique"
+          example: "Message d'erreur"
+      description: "Erreur technique"
+    ListeIbans:
+      type: "array"
+      items:
+            $ref: "#/components/schemas/IBAN"
+    IBAN:
+      type: "string"
+  parameters:
+    xepiconsumerpspid:
+      name: x-epi-consumer-psp-id
+      in: header
+      description: The ID of the Consumer PSP that EPI calls
+      examples:
+        default:
+          value: 0844e6ce-66bd-4a26-869a-18d524c546ac
+      required: true
+      schema:
+        type: string
+        format: uuid
