@@ -1,0 +1,71 @@
+// ---------- Helpers ----------
+const json = (() => {
+  try { return res.getBody() || {}; } catch { return {}; }
+})();
+
+const expected = bru.getVar('expected') || {};
+
+// utilitaires "schema-like"
+const isObject = v => v && typeof v === 'object' && !Array.isArray(v);
+const keysOf = o => Object.keys(o || {}).sort();
+const hasOnlyKeys = (o, allowedKeys) =>
+  isObject(o) && keysOf(o).every(k => allowedKeys.includes(k)) && allowedKeys.every(k => k in o);
+
+// ---------- 1) Statut HTTP ----------
+test('Status HTTP attendu', () => {
+  expect(res.getStatus()).to.equal(expected.status);
+});
+
+// ---------- 2) Schéma de réponse OK ----------
+test('Schéma OK conforme', () => {
+  // objet racine
+  expect(isObject(json), 'body is object').to.equal(true);
+
+  // clés strictes {indicators, truncated}
+  expect(keysOf(json)).to.deep.equal(['indicators', 'truncated']);
+
+  // types
+  expect(Array.isArray(json.indicators), 'indicators is array').to.equal(true);
+  expect(typeof json.truncated, 'truncated is boolean').to.equal('boolean');
+
+  // items de indicators : objet avec clés strictes {proxy_hash, can_be_payer, pro}
+  json.indicators.forEach((it, i) => {
+    expect(isObject(it), `indicators[${i}] is object`).to.equal(true);
+    expect(hasOnlyKeys(it, ['proxy_hash', 'can_be_payer', 'pro']),
+      `indicators[${i}] has only required keys`).to.equal(true);
+
+    expect(typeof it.proxy_hash, `proxy_hash[${i}] type`).to.equal('string');
+    expect(typeof it.can_be_payer, `can_be_payer[${i}] type`).to.equal('boolean');
+    expect(typeof it.pro, `pro[${i}] type`).to.equal('boolean');
+  });
+});
+
+// ---------- 3) Champs truncated attendus ----------
+test('truncated conforme', () => {
+  expect(json.truncated, 'truncated').to.equal(expected.expectedTruncated);
+});
+
+// ---------- 4) Nombre d’indicateurs trouvés ----------
+test('Nombre de résultats conforme', () => {
+  expect(json.indicators.length, 'indicators.length').to.equal(expected.expectedFound);
+});
+
+// ---------- 5) Contenu des indicators : types + longueur hash ----------
+test('Indicators: types & formats', () => {
+  json.indicators.forEach((it, i) => {
+    expect(it).to.have.property('proxy_hash');
+    expect(it).to.have.property('can_be_payer');
+    expect(it).to.have.property('pro');
+
+    if (expected.proxyHashLength) {
+      expect(it.proxy_hash.length, `proxy_hash[${i}] length`)
+        .to.equal(expected.proxyHashLength);
+    }
+    expect(typeof it.can_be_payer, `can_be_payer[${i}]`).to.equal('boolean');
+    expect(typeof it.pro, `pro[${i}]`).to.equal('boolean');
+  });
+});
+
+// ---------- Logs utiles ----------
+console.log('EXPECTED', expected);
+console.log('ACTUAL.indicators', json.indicators);
