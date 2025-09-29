@@ -1,0 +1,57 @@
+// Petits helpers
+const asJson = () => {
+  try { return pm.response.json(); } catch { return null; }
+};
+const isIban = v => /^[A-Z]{2}\d{2}[A-Z0-9]{11,30}$/.test(v);
+
+// Attendus paramétrables par requête
+const expectedStatus   = pm.variables.get('expectedStatus');      // number
+const expectedErrCode  = pm.variables.get('expectedErrorCode');   // string?
+const expectedErrMsg   = pm.variables.get('expectedErrorMsg');    // string?
+const expectNonEmpty   = pm.variables.get('expectNonEmptyList');  // "true"/undefined
+
+// 1) Statut attendu (si fourni)
+if (expectedStatus) {
+  pm.test(`HTTP status == ${expectedStatus}`, () => {
+    pm.expect(pm.response.code).to.eql(Number(expectedStatus));
+  });
+}
+
+// 2) Branches par famille de statut
+const status = pm.response.code;
+const body = asJson();
+
+// 2.a) 200
+if (status === 200) {
+  pm.test('Body est un objet avec champ iban_list (array)', () => {
+    pm.expect(body).to.be.an('object');
+    pm.expect(body).to.have.property('iban_list').that.is.an('array');
+  });
+  pm.test('IBANs ont un format plausible', () => {
+    body.iban_list.forEach(i => pm.expect(isIban(i), `${i} invalide`).to.be.true);
+  });
+  if (String(expectNonEmpty) === 'true') {
+    pm.test('Liste non vide', () => pm.expect(body.iban_list.length).to.be.greaterThan(0));
+  } else {
+    pm.test('Liste vide', () => pm.expect(body.iban_list.length).to.eql(0));
+  }
+}
+
+// 2.b) 4xx / 5xx -> erreur standardisée {code, message}
+if (status >= 400) {
+  pm.test('Erreur structurée {code, message}', () => {
+    pm.expect(body).to.be.an('object');
+    pm.expect(body).to.have.property('code');
+    pm.expect(body).to.have.property('message');
+  });
+  if (expectedErrCode) {
+    pm.test(`Code erreur == ${expectedErrCode}`, () => {
+      pm.expect(body.code).to.eql(expectedErrCode);
+    });
+  }
+  if (expectedErrMsg) {
+    pm.test('Message correspond', () => {
+      pm.expect(body.message).to.eql(expectedErrMsg);
+    });
+  }
+}
