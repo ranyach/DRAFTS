@@ -1,0 +1,11 @@
+// UUID v4 (si tu veux tracer la corrélation côté logs)
+const uuidv4 = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+  .replace(/[xy]/g, c => ((c==='x')? (Math.random()*16|0) : ((Math.random()*16|0)&0x3|0x8)).toString(16));
+
+if (!pm.variables.get('correlationId')) {
+  pm.variables.set('correlationId', uuidv4());
+}
+
+// Nettoyage d'anciens drapeaux éventuels entre itérations manuelles
+['expectedStatus','expectedErrorCode','expectedErrorMsg','expectNonEmptyList']
+  .forEach(k => pm.variables.unset(k));
