@@ -1,0 +1,22 @@
+essayer de rajouter les cas suivants en adaptant le script automatisé que tu as déja fourni  : 
+
+si 401 =>  le statut 401 unauthhorized  et la reponse est une page html qui correspond à : <html>
+
+<head>
+    <title>401 Authorization Required</title>
+</head>
+
+<body></body>
+</html>
+
+
+si 400 ( bad request parce que le numtecprs n'a pas le bon format, et nons juste vide, invalide ou absent) ,=> la reponse est 400 Bad Request avec un corps de reponse qui correspond à : {
+    "type": "about:blank",
+    "title": "Bad Request",
+    "status": 400,
+    "detail": "Failed to convert 'numtecprs' with value: 'chaine-de-caracteres'",
+    "instance": "/msepi03/v1/ibans"
+}
+
+
+si 404 => statut 404 not found et reponse est un objet avec deux champs 'code' et 'message' comme les cas de controles focntionnels 400
