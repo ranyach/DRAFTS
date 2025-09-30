@@ -1,0 +1,134 @@
+// ===== Helpers
+const rawBody = pm.response.text();
+const ct = (pm.response.headers.get('Content-Type') || '').toLowerCase();
+const tryJson = () => { try { return pm.response.json(); } catch { return null; } };
+const isIban = v => /^[A-Z]{2}\d{2}[A-Z0-9]{11,30}$/.test(v);
+
+// ===== Attendus configurables AU NIVEAU REQUÊTE
+const expectedStatus   = Number(pm.variables.get('expectedStatus') || 0);
+const expectedErrCode  = pm.variables.get('expectedErrorCode');     // ex 'B001' ou 'REQ0001'
+const expectedErrMsg   = pm.variables.get('expectedErrorMsg');      // message exact si connu
+const expectNonEmpty   = pm.variables.get('expectNonEmptyList') === 'true';
+const expectHtml401    = pm.variables.get('expectHtml401') === 'true';    // <- NEW
+const expectRfc400     = pm.variables.get('expectRfc400') === 'true';     // <- NEW
+
+// Vérif statut si fourni
+if (expectedStatus) {
+  pm.test(`HTTP status == ${expectedStatus}`, () => {
+    pm.expect(pm.response.code).to.eql(expectedStatus);
+  });
+}
+
+// ===== Branching par statut
+const status = pm.response.code;
+
+// ---------- 200 OK : { iban_list: [...] }
+if (status === 200) {
+  const body = tryJson();
+  pm.test('Body est objet avec iban_list (array)', () => {
+    pm.expect(body).to.be.an('object');
+    pm.expect(body).to.have.property('iban_list').that.is.an('array');
+  });
+  pm.test('IBANs plausibles', () => {
+    body.iban_list.forEach(i => pm.expect(isIban(i), `${i} invalide`).to.be.true);
+  });
+  pm.test(expectNonEmpty ? 'Liste non vide' : 'Liste vide', () => {
+    pm.expect(body.iban_list.length)[expectNonEmpty ? 'to.be.greaterThan' : 'to.eql'](expectNonEmpty ? 0 : 0);
+  });
+}
+
+// ---------- 401 Unauthorized
+if (status === 401) {
+  if (expectHtml401) {
+    pm.test('Content-Type HTML', () => {
+      pm.expect(ct.includes('text/html')).to.be.true;
+    });
+    pm.test('Body HTML attendu exact', () => {
+      const expectedHtml =
+`<html>
+
+<head>
+    <title>401 Authorization Required</title>
+</head>
+
+<body></body>
+</html>`;
+      pm.expect(rawBody.trim()).to.eql(expectedHtml.trim());
+    });
+  } else {
+    // fallback JSON standardisé (si un jour l’API renvoie du JSON)
+    const body = tryJson();
+    pm.test('Erreur structurée {code,message} (si JSON)', () => {
+      if (body) {
+        pm.expect(body).to.have.property('code');
+        pm.expect(body).to.have.property('message');
+      } else {
+        pm.expect(true, 'Pas de JSON pour 401 (mode HTML activable via expectHtml401)').to.be.true;
+      }
+    });
+  }
+}
+
+// ---------- 400 Bad Request
+if (status === 400) {
+  if (expectRfc400) {
+    // Cas "format invalide" RFC7807-like
+    const body = tryJson();
+    pm.test('Payload RFC7807-like', () => {
+      pm.expect(body).to.be.an('object');
+      ['type','title','status','detail','instance'].forEach(k => pm.expect(body).to.have.property(k));
+      pm.expect(body.title).to.eql('Bad Request');
+      pm.expect(body.status).to.eql(400);
+      pm.expect(body.instance).to.eql('/msepi03/v1/ibans');
+    });
+    // Vérifie que 'detail' contient la valeur réellement envoyée dans l’URL
+    pm.test('Detail mentionne la valeur numtecprs envoyée', () => {
+      const q = pm.request.url.query.toObject();
+      const sent = q.numtecprs;
+      pm.expect(body.detail).to.eql(`Failed to convert 'numtecprs' with value: '${sent}'`);
+    });
+  } else {
+    // Cas contrôles fonctionnels existants {code,message}
+    const body = tryJson();
+    pm.test('Erreur structurée {code,message}', () => {
+      pm.expect(body).to.be.an('object');
+      pm.expect(body).to.have.property('code');
+      pm.expect(body).to.have.property('message');
+    });
+    if (expectedErrCode) {
+      pm.test(`Code erreur == ${expectedErrCode}`, () => pm.expect(body.code).to.eql(expectedErrCode));
+    }
+    if (expectedErrMsg) {
+      pm.test('Message conforme', () => pm.expect(body.message).to.eql(expectedErrMsg));
+    }
+  }
+}
+
+// ---------- 404 Not Found : { code, message }
+if (status === 404) {
+  const body = tryJson();
+  pm.test('Erreur structurée {code,message}', () => {
+    pm.expect(body).to.be.an('object');
+    pm.expect(body).to.have.property('code');
+    pm.expect(body).to.have.property('message');
+  });
+  if (expectedErrCode) {
+    pm.test(`Code erreur == ${expectedErrCode}`, () => pm.expect(body.code).to.eql(expectedErrCode));
+  }
+  if (expectedErrMsg) {
+    pm.test('Message conforme', () => pm.expect(body.message).to.eql(expectedErrMsg));
+  }
+}
+
+// ---------- 5xx (inchangé)
+if (status >= 500) {
+  const body = tryJson();
+  pm.test('Erreur technique structurée si JSON', () => {
+    if (body) {
+      pm.expect(body).to.have.property('code');
+      pm.expect(body).to.have.property('message');
+    } else {
+      pm.expect(true).to.be.true; // certains 5xx peuvent ne pas renvoyer JSON
+    }
+  });
+}
