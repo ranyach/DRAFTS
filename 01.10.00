@@ -1,0 +1,13 @@
+Option 1 – Data-Driven (MSEPI05)
+	•	✅ + Maintenabilité : 1 requête par famille (OK/KO), scripts uniques.
+	•	✅ + Scalabilité : on ajoute des cas en éditant seulement le JSON dataset.
+	•	✅ + Exécution massive : parfait pour Newman/CI (dev/int/uat).
+	•	⚠️ – Courbe d’apprentissage pour BA : la logique “dans les données” est moins visible que des requêtes séparées.
+	•	⚠️ – Debug ciblé : il faut logguer fortement l’ID de cas pour diagnostiquer vite.
+
+Option 2 – Multi-requêtes (MSEPI03)
+	•	✅ + Lisible pour BA : un cas = une requête.
+	•	✅ + On garde l’existant : adoption facile, peu de friction.
+	•	✅ + Démo/atelier : parfait pour expliquer chaque règle fonctionnelle.
+	•	⚠️ – Maintenance : plus de requêtes à tenir à jour.
+	•	⚠️ – Risque de duplication si on ne factorise pas bien les scripts collection.
