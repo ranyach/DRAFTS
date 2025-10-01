@@ -1,0 +1,74 @@
+Exécution locale + Rapport HTML (Newman)
+Scripts package.json
+{
+  "scripts": {
+    "m05:ok:dev":  "newman run collections/TNR-LCL-MSEPI05.postman_collection.json -e env/dev.postman_environment.json -d datasets/dev/proxies_indicators_ok.dev.json -r htmlextra --reporter-htmlextra-export reports/msepi05-ok-dev.html",
+    "m05:ko:dev":  "newman run collections/TNR-LCL-MSEPI05.postman_collection.json -e env/dev.postman_environment.json -d datasets/dev/proxies_indicators_ko.dev.json -r htmlextra --reporter-htmlextra-export reports/msepi05-ko-dev.html",
+
+    "m05:ok:int":  "newman run collections/TNR-LCL-MSEPI05.postman_collection.json -e env/int.postman_environment.json -d datasets/int/proxies_indicators_ok.int.json -r htmlextra --reporter-htmlextra-export reports/msepi05-ok-int.html",
+    "m05:ko:int":  "newman run collections/TNR-LCL-MSEPI05.postman_collection.json -e env/int.postman_environment.json -d datasets/int/proxies_indicators_ko.int.json -r htmlextra --reporter-htmlextra-export reports/msepi05-ko-int.html",
+
+    "m03:all:dev": "newman run collections/TNR-LCL-MSEPI03.postman_collection.json -e env/dev.postman_environment.json -r htmlextra --reporter-htmlextra-export reports/msepi03-all-dev.html",
+    "m03:all:int": "newman run collections/TNR-LCL-MSEPI03.postman_collection.json -e env/int.postman_environment.json -r htmlextra --reporter-htmlextra-export reports/msepi03-all-int.html"
+  }
+}
+
+Jeux de données (exemples mini)
+
+MSEPI05 – OK (extrait)
+[
+  {
+    "caseId": "OK_01",
+    "description": "proxy phone FR mobile valide",
+    "expected_status": 200,
+    "headers": { "Context-User-Profile-Code": "L" },
+    "body": { "proxyType": "PHONE", "proxyValue": "+33612345678" }
+  },
+  {
+    "caseId": "OK_02",
+    "description": "proxy email pro",
+    "expected_status": 200,
+    "body": { "proxyType": "EMAIL", "proxyValue": "pro@exemple.com" }
+  }
+]
+
+MSEPI05 – KO (extrait)
+
+[
+  {
+    "caseId": "KO_01",
+    "description": "proxy phone vide",
+    "expected_status": 400,
+    "body": { "proxyType": "PHONE", "proxyValue": "" }
+  },
+  {
+    "caseId": "KO_02",
+    "description": "profile code invalide",
+    "expected_status": 401,
+    "headers": { "Context-User-Profile-Code": "X" },
+    "body": { "proxyType": "EMAIL", "proxyValue": "a@b.c" }
+  }
+]
+
+MSEPI03 – expected par requête (pre-request simple)
+pm.variables.set('expected_status', 400);
+pm.variables.set('response_schema', JSON.stringify({
+  type: 'object',
+  required: ['code','message'],
+  properties: {
+    code: { type: 'string' },
+    message: { type: 'string' }
+  }
+}));
+
+
+
+
+
+
+
+
+Sortie : rapports HTML détaillés dans reports/…html (statuts, assertions, bodies, timings).
+
+
+
