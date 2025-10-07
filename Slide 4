@@ -1,0 +1,22 @@
+Au-delà de la technique, cette aventure m’a surtout permis de mesurer l’impact humain et collectif de l’automatisation.
+
+Sur le plan des résultats, les gains sont clairs :
+une couverture de plus de 80 % des endpoints critiques,
+des temps de validation divisés par deux à trois,
+et des anomalies détectées beaucoup plus tôt.
+
+En parallèle, les équipes ont gagné en confiance.
+Le fait de pouvoir lancer une exécution et obtenir un rapport lisible, sans passer par le QA, change complètement la dynamique.
+
+Côté points d’attention, la maintenance reste essentielle :
+une collection automatisée n’est utile que si elle évolue avec le produit.
+
+C’est pourquoi j’insiste beaucoup sur la co-construction avec les BAs et les développeurs : plus ils s’approprient la logique des tests, plus la qualité devient collective.
+
+Parmi les fiertés, je citerais la mutualisation : les modèles créés sur PAY commencent à être réutilisés dans d’autres squads, et les rapports HTML servent désormais de support aux démos.
+
+Pour la suite, l’ambition est claire :
+intégrer ces tests directement dans les pipelines CI/CD, pour que chaque déploiement soit automatiquement validé,
+et continuer à acculturer les équipes à l’automatisation — pas comme une contrainte, mais comme une aide au quotidien.
+
+Finalement, l’automatisation n’est pas un outil réservé aux testeurs : c’est un langage commun pour toute l’équipe.
