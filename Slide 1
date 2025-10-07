@@ -1,0 +1,15 @@
+Script oral (~ 3 min)
+
+Pour replacer le contexte, je travaille comme automaticienne de test dans le domaine SNI.
+Dans ce cadre, on réalise des immersions successives dans différentes squads pour les aider à structurer et à industrialiser l’automatisation de leurs tests API.
+
+Mon rôle, c’est d’amener une méthodologie d’automatisation qui soit à la fois technique, fiable, et accessible aux équipes.
+
+La première immersion s’est faite dans la squad OSD, avec un focus sur la mise en place d’un modèle data-driven : l’idée était de rendre les tests dynamiques et alimentés à partir de fichiers de données.
+
+La deuxième immersion, actuellement dans la squad PAY, se concentre sur les microservices de paiement P2P – comme MSEPI04 ou MSEPI05 – qui sont des flux critiques dans le parcours client.
+
+Chaque appel API de paiement traverse plusieurs couches : le front mobile, le BFF, puis les back-ends EPI et CAPS-EPI.
+Notre mission, c’est de rendre cette chaîne testable automatiquement de bout en bout, même quand certains environnements externes sont indisponibles.
+
+Enfin, un point clé : au-delà du test technique, l’objectif est de créer une culture d’automatisation commune entre BAs, développeurs et testeurs.
