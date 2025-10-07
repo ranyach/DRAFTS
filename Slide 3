@@ -1,0 +1,26 @@
+Concrètement, la réalisation des tests a pris des formes assez différentes selon les squads.
+
+Chez OSD, on a privilégié une approche data-driven.
+L’idée était de centraliser toutes les données de test dans un fichier unique (JSON ou Excel) et de générer dynamiquement les corps de requête.
+
+Cette approche a plusieurs avantages :
+	•	plus de duplication de requêtes,
+	•	des campagnes évolutives,
+	•	et une maintenance très réduite.
+
+En revanche, elle nécessite un bon niveau de rigueur et de paramétrage.
+
+Chez PAY, on a fait un choix différent : rendre la collection plus lisible pour les BAs et plus intuitive à exécuter.
+Chaque sous-collection correspond à un scénario fonctionnel clair : création, contrôle, consultation du paiement, etc.
+
+Les scripts communs (pré-request, assertions, génération de Correlation ID, etc.) sont factorisés pour réduire la redondance.
+
+Ce qui change aussi, c’est l’usage de Mockoon :
+on a pu simuler les réponses du système tiers CAPS-EPI, ce qui permet de tester des parcours complets même quand les environnements réels sont indisponibles.
+
+On a également intégré Bruno pour évaluer une alternative open-source à Postman, notamment pour les exécutions locales et la compatibilité CI/CD.
+
+Enfin, tous les rapports sont générés automatiquement via Newman ou Jenkins, dans un format HTML exploitable par tous les membres de l’équipe.
+
+En résumé : OSD a apporté la structure et la réutilisabilité ; PAY a apporté la lisibilité et la transversalité.
+Les deux modèles se complètent parfaitement.
