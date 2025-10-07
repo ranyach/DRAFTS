@@ -1,0 +1,15 @@
+L’automatisation n’est pas une fin en soi : c’est un levier de qualité et de productivité.
+
+Sur des flux sensibles comme les paiements, les erreurs peuvent coûter cher : une régression fonctionnelle dans une API P2P, par exemple, peut bloquer des transactions entières.
+
+En automatisant, on sécurise ces parcours critiques tout en gagnant du temps : les tests peuvent être rejoués à chaque déploiement, de jour comme de nuit, sans effort manuel.
+
+Chaque collection Postman devient une documentation vivante :
+elle décrit les cas fonctionnels, montre les en-têtes, les payloads, les règles métier, et elle est exécutable instantanément.
+
+Pour les BAs ou les Product Owners, c’est un vrai atout : ils peuvent visualiser la logique des tests sans écrire une ligne de code.
+
+Autre point fort : la traçabilité.
+Les rapports HTML générés par Newman offrent une lecture immédiate du résultat, avec un code couleur, des statistiques et des liens directs vers les scénarios échoués.
+
+L’automatisation devient donc un outil de communication : entre devs, BAs et QA, on parle enfin le même langage, celui du résultat mesurable.
